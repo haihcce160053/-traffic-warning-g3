@@ -237,7 +237,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:text="Sai tốc độ"
-                        android:textSize="10sp" />
+                        android:textSize="11sp" />
 
                     <!-- Button 2 -->
                     <Button
@@ -246,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Khu dân cư"
-                        android:textSize="10sp" />
+                        android:textSize="11sp" />
 
                     <!-- Button 3 -->
                     <Button
@@ -256,7 +256,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:text="Hết khu dân cư"
-                        android:textSize="10sp" />
+                        android:textSize="11sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

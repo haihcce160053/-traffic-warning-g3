@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -70,7 +69,8 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:background="#004984">
+                android:background="#004984"
+                android:id="@+id/lnLogined">
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,10 +81,11 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginStart="16dp">
                     <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        app:srcCompat="@drawable/ic_launcher_background" />
+                        android:id="@+id/imgAvatarLogin"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="#BCBCBC"
+                        app:srcCompat="@drawable/avatar" />
                 </androidx.cardview.widget.CardView>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -102,7 +103,7 @@
                         android:text="Tài khoản: Hellohai12345"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
                     <TextView
                         android:id="@+id/tvPremium"
                         android:layout_width="wrap_content"
@@ -130,6 +131,62 @@
                     android:layout_gravity="center_vertical"
                     android:background="#004984"/>
             </LinearLayout>
+            <!-- Not login -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:background="#004984"
+                android:id="@+id/lnNotLogin">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginStart="16dp">
+                    <ImageView
+                        android:id="@+id/imgAvatarNotLogin"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="#BCBCBC"
+                        app:srcCompat="@drawable/avatar" />
+                </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside">
+                    <Button
+                        android:id="@+id/btnNeedLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:text="Đăng nhập"
+                        android:textSize="12sp"
+                        android:background="#006EC6"
+                        android:textColor="@color/white" />
+                    <Button
+                        android:id="@+id/btnNeedSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Đăng ký"
+                        android:textSize="12sp"
+                        android:background="#006EC6"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -150,7 +207,31 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/imgBtnPremium"
                     android:layout_centerVertical="true"
-                    android:text="Thông tin gói đăng ký sản phẩm"
+                    android:text="Xem các gói premium"
+                    android:textSize="14sp"
+                    android:textColor="#000000"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="20dp">
+                <ImageButton
+                    android:id="@+id/imgHistoryPremium"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/baseline_history_24"
+                    android:layout_centerVertical="true"
+                    android:background="#004984"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/imgHistoryPremium"
+                    android:layout_centerVertical="true"
+                    android:text="Lịch sử thanh toán"
                     android:textSize="14sp"
                     android:textColor="#000000"/>
             </RelativeLayout>
@@ -177,6 +258,30 @@
                     android:text="Cài đặt cảnh báo"
                     android:textSize="14sp"
                     android:textColor="#000000"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="20dp">
+                <ImageButton
+                    android:id="@+id/imgLogout"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/baseline_logout_24"
+                    android:layout_centerVertical="true"
+                    android:background="#9C2216"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/imgLogout"
+                    android:layout_centerVertical="true"
+                    android:text="Đăng xuất tài khoản"
+                    android:textSize="14sp"
+                    android:textColor="#9C2216"/>
             </RelativeLayout>
 
 <!--
