@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
     Button btnTest, btnTest2, btnTest3;
     ImageButton btnMenu;
+    public static boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
