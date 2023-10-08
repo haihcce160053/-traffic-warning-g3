@@ -208,59 +208,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvReport"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvTrafficImage">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
-
-                    <!-- Button 1 -->
-                    <Button
-                        android:id="@+id/btnWrongMaxspeed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:text="Sai tốc độ"
-                        android:textSize="10sp" />
-
-                    <!-- Button 2 -->
-                    <Button
-                        android:id="@+id/btnHighPopulation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Khu dân cư"
-                        android:textSize="10sp" />
-
-                    <!-- Button 3 -->
-                    <Button
-                        android:id="@+id/btnNotHighPopulation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:text="Hết khu dân cư"
-                        android:textSize="10sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
             <!-- ADS-->
             <com.google.android.gms.ads.AdView
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
