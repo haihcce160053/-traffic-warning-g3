@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
             <LinearLayout
-                android:id="@+id/lbLogined"
+                android:id="@+id/lnLogined"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -100,7 +100,6 @@
                     android:layout_marginBottom="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
                     <TextView
                         android:id="@+id/tvUsername"
                         android:layout_width="wrap_content"
@@ -138,7 +137,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lbNotLogin"
+                android:id="@+id/lnNotLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -170,7 +169,6 @@
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:scaleType="centerInside">
-
                     <Button
                         android:id="@+id/btnNogSignIn"
                         android:layout_width="0dp"
@@ -180,9 +178,8 @@
                         android:background="#006EC6"
                         android:text="Đăng nhập"
                         android:textColor="@color/white" />
-
                     <Button
-                        android:id="@+id/btnNogSignUp"
+                        android:id="@+id/btnNotSignUp"
                         android:layout_width="0dp"
                         android:layout_height="35dp"
                         android:layout_weight="1"
