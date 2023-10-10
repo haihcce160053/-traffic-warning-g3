@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,6 +30,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.namhaigroup.map.dao.ProductsDAO;
+import com.namhaigroup.map.object.Products;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +42,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
     Button btnTest, btnTest2, btnTest3;
     ImageButton btnMenu;
+    ProductsDAO productsDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +107,12 @@ public class MainActivity extends AppCompatActivity {
                 Long = "105.83458324085649";
             }
         });
+
+        productsDAO =  new ProductsDAO(MainActivity.this);
+        List<Products> productsList = productsDAO.displayProducts();
+        for (Products products : productsList) {
+            Log.d("ProductInfo", "id:" + products.getId() + "| name: " + products.getName());
+        }
     }
 
     private void CreateLocationServices() {

@@ -1,4 +1,4 @@
-package com.namhaigroup.map;
+package com.namhaigroup.map.system;
 
 public class UserInformation {
     public static boolean isLogin = false;
@@ -8,4 +8,5 @@ public class UserInformation {
     public static String email;
     public static String phone;
     public static String address;
+    public static int permission;
 }
