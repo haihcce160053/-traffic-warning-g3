@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductActivity">
+    tools:context=".ProductDetailActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -52,7 +52,8 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-    <androidx.core.widget.NestedScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,40 +62,73 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
             <TextView
-                android:id="@+id/tvPremiumProduct"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CÁC GÓI PREMIUM"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="16dp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerViewPremiumProduct"
+                android:text="Thông tin sản phẩm"
+                android:layout_marginBottom="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
-            <TextView
-                android:id="@+id/tvOtherProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CÁC SẢN PHẨM KHÁC"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerViewOtherProduct"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+                <ImageView
+                    android:id="@+id/imgProductDetails"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+                    <TextView
+                        android:id="@+id/tvProductName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tên sản phẩm"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tvProductPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giá sản phẩm"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="14sp"/>
+                    <Button
+                        android:id="@+id/btnTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:text="Thêm vào giỏ hàng"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:orientation="vertical"
+                android:background="#EAEDF2"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:id="@+id/tvProductDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mô tả sản phẩm"
+                    android:textSize="14sp"/>
+            </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

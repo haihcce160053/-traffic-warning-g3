@@ -36,9 +36,11 @@ public class LoginActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
                 if(accountsDAO.login(username, password) == true) {
+                    Accounts accounts =  accountsDAO.getAccountByUsername(username);
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     UserInformation.isLogin = true;
                     UserInformation.username = username;
+                    UserInformation.permission = accounts.getPermission();
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
                 } else {

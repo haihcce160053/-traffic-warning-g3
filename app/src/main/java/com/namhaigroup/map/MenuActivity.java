@@ -14,7 +14,7 @@ import com.namhaigroup.map.system.UserInformation;
 
 public class MenuActivity extends AppCompatActivity {
     LinearLayout lnLogined, lnNotLogin;
-    RelativeLayout btnLogout;
+    RelativeLayout btnLogout, btnAlertSettings, ViewPremiumProduct, btnOrderHistory;
     Button btnNogSignIn, btnNotSignUp;
     TextView tvUsername;
 
@@ -29,6 +29,9 @@ public class MenuActivity extends AppCompatActivity {
         btnNotSignUp = findViewById(R.id.btnNotSignUp);
         btnLogout = findViewById(R.id.btnLogout);
         tvUsername = findViewById(R.id.tvUsername);
+        ViewPremiumProduct = findViewById(R.id.ViewPremiumProduct);
+        btnAlertSettings = findViewById(R.id.btnAlertSettings);
+        btnOrderHistory = findViewById(R.id.btnOrderHistory);
 
         btnNogSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -47,6 +50,14 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         });
+        ViewPremiumProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, ProductActivity.class);
+                startActivity(i);
+            }
+        });
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +72,22 @@ public class MenuActivity extends AppCompatActivity {
                 lnLogined.setVisibility(View.GONE);
                 lnNotLogin.setVisibility(View.VISIBLE);
                 Intent i = new Intent(MenuActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnAlertSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, SettingAlertActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnOrderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, OrderHistoryActivity.class);
                 startActivity(i);
             }
         });

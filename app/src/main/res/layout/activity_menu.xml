@@ -189,6 +189,7 @@
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout
+                android:id="@+id/ViewPremiumProduct"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -213,6 +214,7 @@
                     android:textSize="14sp" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/btnOrderHistory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -238,6 +240,7 @@
                     android:textSize="14sp" />
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/btnAlertSettings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -286,70 +289,6 @@
                     android:textColor="#9C2216"
                     android:textSize="14sp" />
             </RelativeLayout>
-
-            <!--
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="10dp">
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipSpeedAlert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/tvRent1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cảnh báo quá tốc độ"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="14sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCurrentSpeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/tvCurrentSpeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hiển thị tốc độ hiện tại"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="14sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/tvNextSpeedLimit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thông báo tốc độ tiếp theo"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="14sp" />
-            </LinearLayout>
--->
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

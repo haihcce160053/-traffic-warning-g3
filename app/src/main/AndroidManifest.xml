@@ -17,6 +17,15 @@
         android:theme="@style/Theme.Namhaimap"
         tools:targetApi="31">
         <activity
+            android:name=".OrderHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingAlertActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductActivity"
             android:exported="false" />
         <activity

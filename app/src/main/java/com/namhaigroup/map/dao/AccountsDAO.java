@@ -69,6 +69,48 @@ public class AccountsDAO {
         return deletedRows > 0;
     }
 
+    public Accounts getAccountByUsername(String username) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String[] projection = {
+                "username",
+                "password",
+                "fullname",
+                "email",
+                "phone",
+                "address",
+                "permission"
+        };
+
+        String selection = "username = ?";
+        String[] selectionArgs = {username};
+
+        Cursor cursor = db.query(
+                "accounts",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+            String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+            String phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
+            String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+            int permission = cursor.getInt(cursor.getColumnIndexOrThrow("permission"));
+            cursor.close();
+            db.close();
+            return new Accounts(username, password, fullname, email, phone, address, permission);
+        } else {
+            db.close();
+            return null; // No account found with the specified username.
+        }
+    }
+
+
     public List<Accounts> displayAccounts() {
         List<Accounts> accountList = new ArrayList<>();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();

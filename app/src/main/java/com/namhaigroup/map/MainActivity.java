@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -30,8 +29,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.namhaigroup.map.dao.ProductsDAO;
-import com.namhaigroup.map.object.Products;
+import com.namhaigroup.map.system.AppSettings;
+import com.namhaigroup.map.system.UserInformation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +41,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
     Button btnTest, btnTest2, btnTest3;
     ImageButton btnMenu;
-    ProductsDAO productsDAO;
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         tvLat = findViewById(R.id.tvLat);
         tvLong = findViewById(R.id.tvLong);
         tvCurrentSpeed = findViewById(R.id.tvCurrentSpeed);
+        adView = findViewById(R.id.adView);
 
         btnMenu = findViewById(R.id.btnMenu);
         btnMenu.setOnClickListener(new View.OnClickListener() {
@@ -107,12 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 Long = "105.83458324085649";
             }
         });
-
-        productsDAO =  new ProductsDAO(MainActivity.this);
-        List<Products> productsList = productsDAO.displayProducts();
-        for (Products products : productsList) {
-            Log.d("ProductInfo", "id:" + products.getId() + "| name: " + products.getName());
-        }
     }
 
     private void CreateLocationServices() {
@@ -380,32 +373,50 @@ public class MainActivity extends AppCompatActivity {
 
     private void PlaySpeedLimitSound(int speed) {
         if (speed == 40) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed40);
-            mediaPlayer.start();
+            if(AppSettings.isAlert40km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed40);
+                mediaPlayer.start();
+            }
         } else if (speed == 50) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed50);
-            mediaPlayer.start();
+            if(AppSettings.isAlert50km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed50);
+                mediaPlayer.start();
+            }
         } else if (speed == 60) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed60);
-            mediaPlayer.start();
+            if(AppSettings.isAlert60km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed60);
+                mediaPlayer.start();
+            }
         } else if (speed == 70) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed70);
-            mediaPlayer.start();
+            if(AppSettings.isAlert70km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed70);
+                mediaPlayer.start();
+            }
         } else if (speed == 80) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed80);
-            mediaPlayer.start();
+            if(AppSettings.isAlert80km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed80);
+                mediaPlayer.start();
+            }
         } else if (speed == 90) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed90);
-            mediaPlayer.start();
+            if(AppSettings.isAlert90km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed90);
+                mediaPlayer.start();
+            }
         } else if (speed == 100) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed100);
-            mediaPlayer.start();
+            if(AppSettings.isAlert100km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed100);
+                mediaPlayer.start();
+            }
         } else if (speed == 110) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed110);
-            mediaPlayer.start();
+            if(AppSettings.isAlert110km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed110);
+                mediaPlayer.start();
+            }
         } else if (speed == 120) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.speed120);
-            mediaPlayer.start();
+            if(AppSettings.isAlert120km == true) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.speed120);
+                mediaPlayer.start();
+            }
         }
     }
 
@@ -422,6 +433,11 @@ public class MainActivity extends AppCompatActivity {
         if(isStartScan == false) {
             tvAddress.setText("Đang xác định vị trí, vui lòng đợi...");
             CreateLocationServices();
+        }
+        if(UserInformation.permission == 1) {
+            adView.setVisibility(View.GONE);
+        } else {
+            adView.setVisibility(View.VISIBLE);
         }
     }
 

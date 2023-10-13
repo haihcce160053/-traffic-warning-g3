@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingAlertActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#006EC6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <!-- Menu button -->
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/baseline_menu_24" />
+            <!-- Title -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginStart="15dp"
+                android:id="@+id/lnTitle">
+                <TextView
+                    android:id="@+id/tvTitleApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NAMHAI MAP"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvSlogan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Làm chủ tốc độ trên cung đường Việt"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            <TextView
+                android:id="@+id/tvSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Cài đặt cảnh báo"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/cb40km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 40 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb50km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 50 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb60km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 60 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb70km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 70 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb80km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 80 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb90km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 90 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb100km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 100 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb110km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 110 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cb120km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo thông báo 120 km/h"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <CheckBox
+                android:id="@+id/cbHighPopulation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:checked="false"
+                android:text="Cảnh báo khu đông dân cư"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="95dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
