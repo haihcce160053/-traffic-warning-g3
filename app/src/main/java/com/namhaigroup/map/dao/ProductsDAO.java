@@ -19,6 +19,49 @@ public class ProductsDAO {
         databaseHelper = new DatabaseHelper(context);
     }
 
+    public Products getProductById(int id) {
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String[] projection = {
+                "id",
+                "name",
+                "description",
+                "type",
+                "price",
+                "quantity",
+                "sold",
+                "image"
+        };
+        String selection = "id = ?";
+        String[] selectionArgs = { String.valueOf(id) };
+        Cursor cursor = db.query(
+                "products",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        Products product = null;
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int product_id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                int type = cursor.getInt(cursor.getColumnIndexOrThrow("type"));
+                double price = cursor.getDouble(cursor.getColumnIndexOrThrow("price"));
+                int quantity = cursor.getInt(cursor.getColumnIndexOrThrow("quantity"));
+                int sold = cursor.getInt(cursor.getColumnIndexOrThrow("sold"));
+                String image = cursor.getString(cursor.getColumnIndexOrThrow("image"));
+                product = new Products(product_id, name, description, type, price, quantity, sold, image);
+            }
+            cursor.close();
+        }
+        db.close();
+        return product;
+    }
+
+
     public List<Products> displayProducts() {
         List<Products> productsList = new ArrayList<>();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();

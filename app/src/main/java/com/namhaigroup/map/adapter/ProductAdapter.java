@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.namhaigroup.map.OnItemClickListener;
 import com.namhaigroup.map.R;
 import com.namhaigroup.map.object.Products;
 import com.squareup.picasso.Picasso;
@@ -31,13 +32,27 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return new ProductViewHolder(itemView);
     }
 
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
         Products product = productList.get(position);
         holder.productName.setText(product.getName());
         holder.productDescription.setText(product.getDescription());
-        holder.productPrice.setText(String.valueOf(formatCurrency(product.getPrice())));
+        holder.productPrice.setText(formatCurrency(product.getPrice()));
         Picasso.get().load(product.getImage()).into(holder.productImage);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener != null) {
+                    listener.onItemClick(product);
+                }
+            }
+        });
     }
 
     @Override

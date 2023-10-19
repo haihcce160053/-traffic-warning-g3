@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailActivity">
+    tools:context=".CartActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -53,85 +53,79 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thông tin sản phẩm"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+            android:orientation="vertical"
+            android:background="#006EC6">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageView
-                    android:id="@+id/imgProductDetails"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    app:srcCompat="@drawable/ic_launcher_background" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp">
-                    <TextView
-                        android:id="@+id/tvProductName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tên sản phẩm"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="10dp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/tvProductPriceDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Giá sản phẩm"
-                        android:textSize="14sp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginBottom="10dp">
                 <TextView
-                    android:id="@+id/tvProductDescription"
+                    android:id="@+id/tvVoucherLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mô tả sản phẩm"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Khuyến mãi"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tvVoucherPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="0đ"
+                    android:textColor="#FFFFFF"
                     android:textSize="14sp"/>
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btnTest"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="Thêm vào giỏ hàng"
-                android:layout_marginTop="15dp"
-                android:background="#006EC6"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvTotalPriceLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Tổng tiền"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="0đ"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

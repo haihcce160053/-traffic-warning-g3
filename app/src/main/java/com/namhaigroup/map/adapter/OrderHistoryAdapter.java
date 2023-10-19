@@ -32,9 +32,9 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     @Override
     public void onBindViewHolder(@NonNull OrderHistoryAdapter.OrderHistoryViewHolder holder, int position) {
         OrderHistory orderHistory = orderHistoryList.get(position);
-        holder.tvProductNameHistory.setText(orderHistory.getProduct_name());
-        holder.tvOrderDate.setText(orderHistory.getOrder_date());
-        holder.tvProductPriceHistory.setText(String.valueOf(formatCurrency(orderHistory.getOrder_price())));
+        holder.tvProductNameHistory.setText("Sản phẩm: " + orderHistory.getProduct_name());
+        holder.tvOrderDate.setText("Ngày thanh toán: " + orderHistory.getOrder_date());
+        holder.tvProductPriceHistory.setText("Giá: " + formatCurrency(orderHistory.getOrder_price()));
     }
 
     @Override

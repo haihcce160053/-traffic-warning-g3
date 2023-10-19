@@ -1,6 +1,5 @@
 package com.namhaigroup.map;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,8 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                     UserInformation.isLogin = true;
                     UserInformation.username = username;
                     UserInformation.permission = accounts.getPermission();
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(i);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }

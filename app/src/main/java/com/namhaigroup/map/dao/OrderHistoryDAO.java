@@ -27,7 +27,8 @@ public class OrderHistoryDAO {
                 "username",
                 "product_name",
                 "order_date",
-                "order_price"
+                "order_price",
+                "product_id"
         };
 
         Cursor cursor = db.query(
@@ -47,7 +48,8 @@ public class OrderHistoryDAO {
                 String product_name = cursor.getString(cursor.getColumnIndexOrThrow("product_name"));
                 String order_date =  cursor.getString(cursor.getColumnIndexOrThrow("order_date"));
                 Double order_price =  cursor.getDouble(cursor.getColumnIndexOrThrow("order_price"));
-                OrderHistory orderHistory = new OrderHistory(id, username, product_name, order_date, order_price);
+                int product_id = cursor.getInt(cursor.getColumnIndexOrThrow("product_id"));
+                OrderHistory orderHistory = new OrderHistory(id, username, product_name, order_date, order_price, product_id);
                 orderHistoryList.add(orderHistory);
             }
             cursor.close();

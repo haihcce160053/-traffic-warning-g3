@@ -6,16 +6,18 @@ public class OrderHistory {
     private String product_name;
     private String order_date;
     private double order_price;
+    private int product_id;
 
     public OrderHistory() {
     }
 
-    public OrderHistory(int id, String username, String product_name, String order_date, double order_price) {
+    public OrderHistory(int id, String username, String product_name, String order_date, double order_price, int product_id) {
         this.id = id;
         this.username = username;
         this.product_name = product_name;
         this.order_date = order_date;
         this.order_price = order_price;
+        this.product_id = product_id;
     }
 
     public int getId() {
@@ -56,5 +58,13 @@ public class OrderHistory {
 
     public void setOrder_price(double order_price) {
         this.order_price = order_price;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 }

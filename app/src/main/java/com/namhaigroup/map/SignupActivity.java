@@ -1,6 +1,5 @@
 package com.namhaigroup.map;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,8 +58,7 @@ public class SignupActivity extends AppCompatActivity {
                         UserInformation.phone = etPhone.getText().toString().trim();
                         UserInformation.permission = 0;
                         UserInformation.address = etAddress.getText().toString().trim();
-                        Intent i = new Intent(SignupActivity.this, MainActivity.class);
-                        startActivity(i);
+                        finish();
                     } else {
                         Toast.makeText(SignupActivity.this, "Đăng ký thất bại, tài khoản đã tồn tại", Toast.LENGTH_SHORT).show();
                     }

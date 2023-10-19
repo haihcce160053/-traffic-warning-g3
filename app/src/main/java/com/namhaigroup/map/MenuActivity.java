@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
     LinearLayout lnLogined, lnNotLogin;
     RelativeLayout btnLogout, btnAlertSettings, ViewPremiumProduct, btnOrderHistory;
     Button btnNogSignIn, btnNotSignUp;
+    ImageButton btnCart;
     TextView tvUsername;
 
     @Override
@@ -32,6 +34,7 @@ public class MenuActivity extends AppCompatActivity {
         ViewPremiumProduct = findViewById(R.id.ViewPremiumProduct);
         btnAlertSettings = findViewById(R.id.btnAlertSettings);
         btnOrderHistory = findViewById(R.id.btnOrderHistory);
+        btnCart = findViewById(R.id.btnCart);
 
         btnNogSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -71,8 +74,7 @@ public class MenuActivity extends AppCompatActivity {
                 UserInformation.permission = 0;
                 lnLogined.setVisibility(View.GONE);
                 lnNotLogin.setVisibility(View.VISIBLE);
-                Intent i = new Intent(MenuActivity.this, MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
@@ -88,6 +90,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MenuActivity.this, OrderHistoryActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, CartActivity.class);
                 startActivity(i);
             }
         });
