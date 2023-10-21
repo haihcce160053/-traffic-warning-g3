@@ -106,7 +106,7 @@ public class AccountsDAO {
             return new Accounts(username, password, fullname, email, phone, address, permission);
         } else {
             db.close();
-            return null; // No account found with the specified username.
+            return null;
         }
     }
 

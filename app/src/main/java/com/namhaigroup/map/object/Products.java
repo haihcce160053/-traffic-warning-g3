@@ -10,10 +10,12 @@ public class Products {
     private int sold;
     private String image;
 
+    private Product_type productType;
+
     public Products() {
     }
 
-    public Products(int id, String name, String description, int type, double price, int quantity, int sold, String image) {
+    public Products(int id, String name, String description, int type, double price, int quantity, int sold, String image, Product_type productType) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -22,6 +24,7 @@ public class Products {
         this.quantity = quantity;
         this.sold = sold;
         this.image = image;
+        this.productType = productType;
     }
 
     public int getId() {
@@ -86,5 +89,13 @@ public class Products {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Product_type getProductType() {
+        return productType;
+    }
+
+    public void setProductType(Product_type productType) {
+        this.productType = productType;
     }
 }

@@ -1,10 +1,10 @@
 package com.namhaigroup.map.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,15 +42,50 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartAdapter.CartViewHolder(itemView);
     }
 
+    public OnAddMoreClickListener addMoreClickListener;
+    public OnMinusMoreClickListener minusMoreClickListener;
+
+    public interface OnAddMoreClickListener {
+        void onAddMoreClick(int carId);
+    }
+
+    public interface OnMinusMoreClickListener {
+        void onMinusMoreClick(int carId);
+    }
+
+    public void setOnAddMoreClickListener(OnAddMoreClickListener listener) {
+        this.addMoreClickListener = listener;
+    }
+    public void setOnMinusMoreClickListener(OnMinusMoreClickListener listener) {
+        this.minusMoreClickListener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.CartViewHolder holder, int position) {
         Cart cart = cartList.get(position);
+        holder.tvcartProductname.setText(cart.getProducts().getName());
+        holder.tvcartProductPrice.setText(formatCurrency(cart.getProducts().getPrice()));
+        holder.tvcartProductQuantity.setText("Số lượng: " + String.valueOf(cart.getQuantity()));
+        Picasso.get().load(cart.getProducts().getImage()).into(holder.cartImageProduct);
+        holder.btnAddMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int itemPosition = holder.getAdapterPosition();
+                if (addMoreClickListener != null && itemPosition != RecyclerView.NO_POSITION) {
+                    addMoreClickListener.onAddMoreClick(cart.getId());
+                }
+            }
+        });
 
-        holder.tvcartProductname.setText(cartDAO.getCartById(cart.getProduct_id()).getProducts().getName());
-        holder.tvcartProductPrice.setText(String.valueOf(formatCurrency(cartDAO.getCartById(cart.getProduct_id()).getProducts().getPrice())));
-        holder.tvcartProductQuantity.setText(String.valueOf("Số lượng: " + cartDAO.getCartById(cart.getProduct_id()).getQuantity()));
-        Picasso.get().load(cartDAO.getCartById(cart.getProduct_id()).getProducts().getImage()).into(holder.cartImageProduct);
-        Log.d("Hello", cartDAO.getCartById(cart.getProduct_id()).getProducts().getImage());
+        holder.btnMinusMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int itemPosition = holder.getAdapterPosition();
+                if (minusMoreClickListener != null && itemPosition != RecyclerView.NO_POSITION) {
+                    minusMoreClickListener.onMinusMoreClick(cart.getId());
+                }
+            }
+        });
     }
 
     @Override
@@ -60,6 +95,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public class CartViewHolder extends RecyclerView.ViewHolder {
         TextView tvcartProductname, tvcartProductPrice, tvcartProductQuantity;
+        ImageButton btnAddMore, btnMinusMore;
         ImageView cartImageProduct;
 
         public CartViewHolder(View itemView) {
@@ -68,6 +104,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvcartProductPrice = itemView.findViewById(R.id.tvcartProductPrice);
             tvcartProductQuantity = itemView.findViewById(R.id.tvcartProductQuantity);
             cartImageProduct = itemView.findViewById(R.id.cartImageProduct);
+            btnAddMore = itemView.findViewById(R.id.btnAddMore);
+            btnMinusMore = itemView.findViewById(R.id.btnMinusMore);
         }
     }
 

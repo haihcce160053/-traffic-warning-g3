@@ -6,18 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.namhaigroup.map.adapter.OrderHistoryAdapter;
-import com.namhaigroup.map.dao.OrderHistoryDAO;
-import com.namhaigroup.map.object.OrderHistory;
+import com.namhaigroup.map.adapter.OrderAdapter;
+import com.namhaigroup.map.dao.OrderDAO;
+import com.namhaigroup.map.object.Orders;
 import com.namhaigroup.map.system.UserInformation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderHistoryActivity extends AppCompatActivity {
-    List<OrderHistory> orderHistoryList;
+public class OrderActivity extends AppCompatActivity {
+    List<Orders> orderHistoryList;
     private RecyclerView RecyclerViewOrderHistory;
-    private OrderHistoryAdapter orderHistoryAdapter;
+    private OrderAdapter orderHistoryAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +27,11 @@ public class OrderHistoryActivity extends AppCompatActivity {
     }
 
     private void DisplayOrderHistory() {
-        OrderHistoryDAO orderHistoryDAO = new OrderHistoryDAO(this);
-        orderHistoryList = orderHistoryDAO.getAllOrderHistory();
+        OrderDAO orderDAO = new OrderDAO(this);
+        orderHistoryList = orderDAO.getOrderByUsername(UserInformation.username);
 
-        List<OrderHistory> historyList = new ArrayList<>();
-        for (OrderHistory orderHistory : orderHistoryList) {
+        List<Orders> historyList = new ArrayList<>();
+        for (Orders orderHistory : orderHistoryList) {
             if(orderHistory.getUsername().equals(UserInformation.username)) {
                 historyList.add(orderHistory);
             }
@@ -39,7 +39,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
         RecyclerViewOrderHistory = findViewById(R.id.RecyclerViewOrderHistory);
         RecyclerViewOrderHistory.setLayoutManager(new LinearLayoutManager(this));
-        orderHistoryAdapter = new OrderHistoryAdapter(historyList);
+        orderHistoryAdapter = new OrderAdapter(historyList, this);
         RecyclerViewOrderHistory.setAdapter(orderHistoryAdapter);
     }
 }

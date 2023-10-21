@@ -35,7 +35,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Products product) {
                 Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
-                intent.putExtra("name", product.getName());
+                intent.putExtra("product_id", String.valueOf(product.getId()));
+                intent.putExtra("product_name", product.getName());
                 intent.putExtra("price", String.valueOf(formatCurrency(product.getPrice())));
                 intent.putExtra("description", product.getDescription());
                 intent.putExtra("image", product.getImage());
@@ -47,7 +48,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Products product) {
                 Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
-                intent.putExtra("name", product.getName());
+                intent.putExtra("product_id", String.valueOf(product.getId()));
+                intent.putExtra("product_name", product.getName());
                 intent.putExtra("price", String.valueOf(formatCurrency(product.getPrice())));
                 intent.putExtra("description", product.getDescription());
                 intent.putExtra("image", product.getImage());

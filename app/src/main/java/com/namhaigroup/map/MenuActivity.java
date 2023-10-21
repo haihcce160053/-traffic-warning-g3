@@ -1,6 +1,13 @@
 package com.namhaigroup.map;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.namhaigroup.map.dao.CartDAO;
 import com.namhaigroup.map.system.UserInformation;
 
 public class MenuActivity extends AppCompatActivity {
@@ -18,7 +26,8 @@ public class MenuActivity extends AppCompatActivity {
     RelativeLayout btnLogout, btnAlertSettings, ViewPremiumProduct, btnOrderHistory;
     Button btnNogSignIn, btnNotSignUp;
     ImageButton btnCart;
-    TextView tvUsername;
+    TextView tvUsername, tvPremium;
+    CartDAO cartDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,8 @@ public class MenuActivity extends AppCompatActivity {
         btnAlertSettings = findViewById(R.id.btnAlertSettings);
         btnOrderHistory = findViewById(R.id.btnOrderHistory);
         btnCart = findViewById(R.id.btnCart);
+        tvPremium = findViewById(R.id.tvPremium);
+        cartDAO = new CartDAO(this);
 
         btnNogSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -69,7 +80,7 @@ public class MenuActivity extends AppCompatActivity {
                 UserInformation.fullname = null;
                 UserInformation.phone = null;
                 UserInformation.email = null;
-                UserInformation.premiumType = null;
+                UserInformation.isPremium = false;
                 UserInformation.address = null;
                 UserInformation.permission = 0;
                 lnLogined.setVisibility(View.GONE);
@@ -89,7 +100,7 @@ public class MenuActivity extends AppCompatActivity {
         btnOrderHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MenuActivity.this, OrderHistoryActivity.class);
+                Intent i = new Intent(MenuActivity.this, OrderActivity.class);
                 startActivity(i);
             }
         });
@@ -110,9 +121,48 @@ public class MenuActivity extends AppCompatActivity {
             lnLogined.setVisibility(View.VISIBLE);
             lnNotLogin.setVisibility(View.GONE);
             tvUsername.setText("Tài khoản: " + UserInformation.username);
+            if(UserInformation.isNotiCart == false) {
+                UserInformation.isNotiCart = true;
+                if(cartDAO.getCartByUsername(UserInformation.username).size() > 0) {
+                    showNotification();
+                }
+            }
         } else {
             lnLogined.setVisibility(View.GONE);
             lnNotLogin.setVisibility(View.VISIBLE);
         }
+
+        if(UserInformation.isPremium == true) {
+            tvPremium.setText("Gói dịch vụ: Premium");
+        } else {
+            tvPremium.setText("Ngày hết hạn: Miễn phí");
+        }
+    }
+
+    private void showNotification() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        String channelId = "namhaimap";
+        CharSequence channelName = "Nam Hải Map";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            channel = new NotificationChannel(channelId, channelName, importance);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notification = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            notification = new Notification.Builder(this, channelId)
+                    .setContentTitle("Thông báo")
+                    .setContentText("Bạn đang có sản phẩm trong giỏ hàng")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setLargeIcon(bitmap)
+                    .build();
+        }
+        int notificationId = 1;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.createNotificationChannel(channel);
+        }
+        notificationManager.notify(notificationId, notification);
     }
 }

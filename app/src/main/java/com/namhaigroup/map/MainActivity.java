@@ -66,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
         tvLong = findViewById(R.id.tvLong);
         tvCurrentSpeed = findViewById(R.id.tvCurrentSpeed);
         adView = findViewById(R.id.adView);
-
         btnMenu = findViewById(R.id.btnMenu);
+
+        CreateADSServices();
+
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        CreateADSServices();
 
         btnTest = findViewById(R.id.btnTest);
         btnTest2 = findViewById(R.id.btnTest2);
@@ -435,6 +436,11 @@ public class MainActivity extends AppCompatActivity {
             CreateLocationServices();
         }
         if(UserInformation.permission == 1) {
+            adView.setVisibility(View.GONE);
+        } else {
+            adView.setVisibility(View.VISIBLE);
+        }
+        if(UserInformation.isPremium == true) {
             adView.setVisibility(View.GONE);
         } else {
             adView.setVisibility(View.VISIBLE);

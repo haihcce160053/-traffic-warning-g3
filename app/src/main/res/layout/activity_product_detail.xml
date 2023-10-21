@@ -124,7 +124,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnTest"
+                android:id="@+id/btnAddToCart"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:text="Thêm vào giỏ hàng"
