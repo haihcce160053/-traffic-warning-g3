@@ -23,7 +23,7 @@ import com.namhaigroup.map.system.UserInformation;
 
 public class MenuActivity extends AppCompatActivity {
     LinearLayout lnLogined, lnNotLogin;
-    RelativeLayout btnLogout, btnAlertSettings, ViewPremiumProduct, btnOrderHistory;
+    RelativeLayout btnLogout, btnAlertSettings, ViewPremiumProduct, btnOrderHistory, btnMyInformation, btnProductManager, btnOrderManager;
     Button btnNogSignIn, btnNotSignUp;
     ImageButton btnCart;
     TextView tvUsername, tvPremium;
@@ -43,6 +43,9 @@ public class MenuActivity extends AppCompatActivity {
         ViewPremiumProduct = findViewById(R.id.ViewPremiumProduct);
         btnAlertSettings = findViewById(R.id.btnAlertSettings);
         btnOrderHistory = findViewById(R.id.btnOrderHistory);
+        btnMyInformation = findViewById(R.id.btnMyInformation);
+        btnProductManager = findViewById(R.id.btnProductManager);
+        btnOrderManager = findViewById(R.id.btnOrderManager);
         btnCart = findViewById(R.id.btnCart);
         tvPremium = findViewById(R.id.tvPremium);
         cartDAO = new CartDAO(this);
@@ -112,6 +115,30 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        btnMyInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, GoogleMapInformation.class);
+                startActivity(i);
+            }
+        });
+
+        btnProductManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, ProductManagerActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnOrderManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, OrderManagerActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -127,9 +154,18 @@ public class MenuActivity extends AppCompatActivity {
                     showNotification();
                 }
             }
+            if(UserInformation.permission == 1) {
+                btnProductManager.setVisibility(View.VISIBLE);
+                btnOrderManager.setVisibility(View.VISIBLE);
+            } else {
+                btnProductManager.setVisibility(View.GONE);
+                btnOrderManager.setVisibility(View.GONE);
+            }
         } else {
             lnLogined.setVisibility(View.GONE);
             lnNotLogin.setVisibility(View.VISIBLE);
+            btnProductManager.setVisibility(View.GONE);
+            btnOrderManager.setVisibility(View.GONE);
         }
 
         if(UserInformation.isPremium == true) {

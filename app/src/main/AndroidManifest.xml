@@ -18,6 +18,15 @@
         android:theme="@style/Theme.Namhaimap"
         tools:targetApi="31">
         <activity
+            android:name=".OrderManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleMapInformation"
+            android:exported="false" />
+        <activity
             android:name=".InfoActivity"
             android:exported="false" />
         <activity
@@ -48,6 +57,9 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5335263066237146~2108280900" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyATNUvVqtoVjBuW-GxvRW3qZHjoPKpwp5Q" />
 
         <activity
             android:name=".MainActivity"

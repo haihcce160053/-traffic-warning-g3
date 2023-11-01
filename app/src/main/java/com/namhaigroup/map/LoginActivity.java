@@ -1,7 +1,6 @@
 package com.namhaigroup.map;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,37 +41,33 @@ public class LoginActivity extends AppCompatActivity {
                 accountsDAO =  new AccountsDAO(LoginActivity.this);
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                if(accountsDAO.login(username, password) == true) {
-                    Accounts accounts = accountsDAO.getAccountByUsername(username);
-
-                    orderDAO = new OrderDAO(LoginActivity.this);
-                    productsDAO = new ProductsDAO(LoginActivity.this);
-
-                    List<Orders> ordersList;
-                    ordersList = orderDAO.getOrderByUsername(username);
-                    if(ordersList.size() > 0) {
-                        for (Orders order : ordersList) {
-                            if(order.getProducts().getType() <= 4) {
-                                UserInformation.isPremium = true;
-                            } else {
-                                UserInformation.isPremium = false;
+                if(username.length() > 0 && password.length() > 0) {
+                    if(accountsDAO.login(username, password) == true) {
+                        Accounts accounts = accountsDAO.getAccountByUsername(username);
+                        orderDAO = new OrderDAO(LoginActivity.this);
+                        productsDAO = new ProductsDAO(LoginActivity.this);
+                        List<Orders> ordersList;
+                        ordersList = orderDAO.getOrderByUsername(username);
+                        if(ordersList.size() > 0) {
+                            for (Orders order : ordersList) {
+                                if(order.getProducts().getType() <= 4 && order.getStatus() == 5) {
+                                    UserInformation.isPremium = true;
+                                    break;
+                                } else {
+                                    UserInformation.isPremium = false;
+                                }
                             }
                         }
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        UserInformation.isLogin = true;
+                        UserInformation.username = username;
+                        UserInformation.permission = accounts.getPermission();
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                     }
-
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    UserInformation.isLogin = true;
-                    UserInformation.username = username;
-                    UserInformation.permission = accounts.getPermission();
-                    finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
-                }
-                List<Accounts> accountList = accountsDAO.displayAccounts();
-                for (Accounts account : accountList) {
-                    Log.d("AccountInfo", "Username: " + account.getUsername() + ", Password: " + account.getPassword() +
-                            ", Fullname: " + account.getFullname() + ", Email: " + account.getEmail() +
-                            ", Phone: " + account.getPhone() + ", Address: " + account.getAddress() + ", Permission: " + account.getPermission());
+                    Toast.makeText(LoginActivity.this, "Vui lòng nhập đầy đủ thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                 }
             }
         });

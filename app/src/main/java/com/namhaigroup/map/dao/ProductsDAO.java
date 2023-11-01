@@ -1,5 +1,6 @@
 package com.namhaigroup.map.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -138,5 +139,58 @@ public class ProductsDAO {
         }
         db.close();
         return productsList;
+    }
+
+    public long addProduct(Products product) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", product.getName());
+        values.put("description", product.getDescription());
+        values.put("type", product.getType());
+        values.put("price", product.getPrice());
+        values.put("quantity", product.getQuantity());
+        values.put("sold", product.getSold());
+        values.put("image", product.getImage());
+
+        long newRowId = db.insert("products", null, values);
+        db.close();
+        return newRowId;
+    }
+
+    public int updateProduct(Products product) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", product.getName());
+        values.put("description", product.getDescription());
+        values.put("type", product.getType());
+        values.put("price", product.getPrice());
+        values.put("quantity", product.getQuantity());
+        values.put("sold", product.getSold());
+        values.put("image", product.getImage());
+
+        String selection = "id = ?";
+        String[] selectionArgs = {String.valueOf(product.getId())};
+
+        int updatedRows = db.update("products", values, selection, selectionArgs);
+        db.close();
+        return updatedRows;
+    }
+
+    public boolean deleteProduct(int productId) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String selection = "id = ?";
+        String[] selectionArgs = {String.valueOf(productId)};
+        int deletedRows = db.delete("products", selection, selectionArgs);
+        db.close();
+        return deletedRows > 0;
+    }
+
+    public boolean deleteCart(int productId) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String selection = "product_id = ?";
+        String[] selectionArgs = {String.valueOf(productId)};
+        int deletedRows = db.delete("cart", selection, selectionArgs);
+        db.close();
+        return deletedRows > 0;
     }
 }

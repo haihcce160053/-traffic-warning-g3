@@ -170,10 +170,77 @@ public class OrderDAO {
         }
     }
 
+    public List<Orders> getAllOrders() {
+        List<Orders> ordersList = new ArrayList<>();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String[] projection = {
+                "id",
+                "username",
+                "product_id",
+                "quantity",
+                "total_price",
+                "order_date",
+                "status"
+        };
+
+        Cursor cursor = db.query(
+                "orders",
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String order_username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+                int product_id = cursor.getInt(cursor.getColumnIndexOrThrow("product_id"));
+                int quantity = cursor.getInt(cursor.getColumnIndexOrThrow("quantity"));
+                double total_price = cursor.getDouble(cursor.getColumnIndexOrThrow("total_price"));
+                String order_date = cursor.getString(cursor.getColumnIndexOrThrow("order_date"));
+                int status = cursor.getInt(cursor.getColumnIndexOrThrow("status"));
+
+                Products products = productsDAO.getProductById(product_id);
+                Orders_status orderStatus = getOrderStatusById(status);
+
+                Orders order = new Orders(id, order_username, product_id, quantity, total_price, order_date, status, products, orderStatus);
+                ordersList.add(order);
+            }
+            cursor.close();
+        }
+        db.close();
+        return ordersList;
+    }
+
     public boolean deleteVoucherById(int id) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         int deletedRows = db.delete("voucher", "id = ?", new String[]{String.valueOf(id)});
         db.close();
         return deletedRows > 0;
     }
+
+    public boolean updateOrder(Orders updatedOrder) {
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("username", updatedOrder.getUsername());
+        values.put("product_id", updatedOrder.getProduct_id());
+        values.put("quantity", updatedOrder.getQuantity());
+        values.put("total_price", updatedOrder.getTotal_price());
+        values.put("order_date", updatedOrder.getOrder_date());
+        values.put("status", updatedOrder.getStatus());
+
+        String selection = "id = ?";
+        String[] selectionArgs = {String.valueOf(updatedOrder.getId())};
+
+        int rowsUpdated = db.update("orders", values, selection, selectionArgs);
+
+        db.close();
+
+        return rowsUpdated > 0;
+    }
+
 }

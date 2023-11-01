@@ -29,6 +29,15 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
             <TextView
+                android:id="@+id/tvOrderManagerUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:text="Người dùng"
+                android:textSize="12sp" />
+            <TextView
                 android:id="@+id/tvOrderDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,8 +72,26 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
                 android:text="Trạng thái đơn"
-                android:textSize="12sp"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="12sp" />
+            <Spinner
+                android:id="@+id/orderManagerSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/btnUpdateOrdersInfo"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="#006EC6"
+                android:text="Cập nhật đơn hàng"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

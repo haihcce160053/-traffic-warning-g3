@@ -49,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             @Override
             public void onClick(View view) {
                 if(listener != null) {
-                    listener.onItemClick(product);
+                    listener.onItemProductClick(product);
                 }
             }
         });

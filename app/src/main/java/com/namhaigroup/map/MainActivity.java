@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         btnMenu = findViewById(R.id.btnMenu);
 
-        CreateADSServices();
-
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
         btnTest = findViewById(R.id.btnTest);
         btnTest2 = findViewById(R.id.btnTest2);
@@ -88,23 +85,23 @@ public class MainActivity extends AppCompatActivity {
         btnTest3.setVisibility(View.GONE);
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Lat = "10.016759199087542";
-                Long = "105.72547700742236";
+            public void onClick(View v) { //Nguyen Van Cu
+                Lat = "10.012645986568206";
+                Long = "105.73280685018291";
             }
         });
-        btnTest2.setOnClickListener(new View.OnClickListener() {
+        btnTest2.setOnClickListener(new View.OnClickListener() { //Nguyen Van Linh (BV Phuong Chau)
             @Override
             public void onClick(View v) {
-                Lat = "10.668452321770989";
-                Long = "106.52689055959321";
+                Lat = "10.032656655627347";
+                Long = "105.74952319358938";
             }
         });
-        btnTest3.setOnClickListener(new View.OnClickListener() {
+        btnTest3.setOnClickListener(new View.OnClickListener() { //Cao toc Trung Luong
             @Override
             public void onClick(View v) {
-                Lat = "10.06329638905475";
-                Long = "105.83458324085649";
+                Lat = "10.661509694337031";
+                Long = "106.50014001816942";
             }
         });
     }
@@ -124,11 +121,13 @@ public class MainActivity extends AppCompatActivity {
                         double speedKmh = (speed * 3600) / 1000;
                         speedKmh = ((double) Math.round(speedKmh * 10) / 10);
 
-                        Lat = String.valueOf(latitude);
-                        Long = String.valueOf(longitude);
+                        if(UserInformation.permission != 2) {
+                            Lat = String.valueOf(latitude);
+                            Long = String.valueOf(longitude);
+                        }
 
-                        tvLat.setText("Kinh độ: " + latitude);
-                        tvLong.setText("Vĩ độ: " + longitude);
+                        tvLat.setText("Kinh độ: " + Lat);
+                        tvLong.setText("Vĩ độ: " + Long);
                         tvCurrentSpeed.setText("Tốc độ: " + speedKmh + " km/h");
                     }
                     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -260,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                         String roadType = jsonObject.getString("type");
                         String residential = jsonObject.getString("place_rank");
                         if(!roadType.equals("bridge")) {
-                            if (roadType.equals("trunk") || roadType.equals("primary") || roadType.equals("secondary")) {
+                            if (roadType.equals("trunk")) {
                                 if (isResidential == false && Integer.parseInt(residential) >= 30) {
                                     isResidential = true;
                                 } else {
@@ -278,7 +277,18 @@ public class MainActivity extends AppCompatActivity {
                                 } else if (isResidential == false && oneway == false) {
                                     maxSpeedLimit = "80";
                                 }
-                            } else if (roadType.equals("residential") || roadType.equals("tertiary")) {
+                            } else if (roadType.equals("primary") || roadType.equals("secondary")) {
+                                if (isResidential == true && oneway == true) {
+                                    maxSpeedLimit = "60";
+                                }  else if (isResidential == true && oneway == false) {
+                                    maxSpeedLimit = "50";
+                                } else if (isResidential == false && oneway == true) {
+                                    maxSpeedLimit = "60";
+                                } else if (isResidential == false && oneway == false) {
+                                    maxSpeedLimit = "50";
+                                }
+                            }
+                            else if (roadType.equals("residential") || roadType.equals("tertiary")) {
                                 maxSpeedLimit = "50";
                             } else if (roadType.equals("motorway")) {
                                 if (name.toLowerCase().contains("cao lãnh - vàm cống")) {
@@ -435,15 +445,31 @@ public class MainActivity extends AppCompatActivity {
             tvAddress.setText("Đang xác định vị trí, vui lòng đợi...");
             CreateLocationServices();
         }
+
         if(UserInformation.permission == 1) {
             adView.setVisibility(View.GONE);
-        } else {
+            btnTest.setVisibility(View.GONE);
+            btnTest2.setVisibility(View.GONE);
+            btnTest3.setVisibility(View.GONE);
+        } else if(UserInformation.permission == 2) {
+            btnTest.setVisibility(View.VISIBLE);
+            btnTest2.setVisibility(View.VISIBLE);
+            btnTest3.setVisibility(View.VISIBLE);
             adView.setVisibility(View.VISIBLE);
+            CreateADSServices();
         }
+        else {
+            adView.setVisibility(View.VISIBLE);
+            btnTest.setVisibility(View.GONE);
+            btnTest2.setVisibility(View.GONE);
+            btnTest3.setVisibility(View.GONE);
+        }
+
         if(UserInformation.isPremium == true) {
             adView.setVisibility(View.GONE);
         } else {
             adView.setVisibility(View.VISIBLE);
+            CreateADSServices();
         }
     }
 
